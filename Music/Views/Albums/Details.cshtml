@@ -1,11 +1,8 @@
 ﻿@model Music.Models.Album
-
 @{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
-
 <div>
     <h4>Album</h4>
     <hr />
@@ -13,38 +10,47 @@
         <dt>
             @Html.DisplayNameFor(model => model.Artist)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Artist.Name)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist.Bio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Artist.Bio)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Genre)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Genre.Name)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Likes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Likes)
+        </dd>
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID }) |
     @Html.ActionLink("Back to List", "Index")
+</p>
+<p>
+    <h3>You might also like:</h3>
+
+    
 </p>

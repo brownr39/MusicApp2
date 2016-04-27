@@ -1,52 +1,45 @@
 ﻿@model IEnumerable<Music.Models.Album>
-
 @{
     ViewBag.Title = "Index";
+    var grid = new WebGrid(Model);
 }
 
-    
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Artist)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Artist.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlbumID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID })
-        </td>
-    </tr>
+<h2>Albums</h2>
+<br>
+@using (Html.BeginForm())
+{
+    @Html.TextBox("SearchString") <input type="submit" value="Search" />
 }
+<br>
+<br>
+@Html.ActionLink("Create New", "Create")
 
-</table>
+<div id="grid">
+
+
+    @grid.GetHtml(
+
+            tableStyle: "table table-striped",
+            columns:
+                grid.Columns(
+
+                    grid.Column(columnName: "ArtistID", header: "Artist", format: @<a href="/Artists/ShowSomeArtists/@item.Artist.ArtistID">@item.Artist.Name</a>),
+                    grid.Column(columnName: "GenreID", header: "Genre", format: @<a href="/Genres/ShowSomeGenres/@item.Genre.GenreID">@item.Genre.Name</a>),
+                    grid.Column(columnName: "Title", header: "Title"),
+                    grid.Column(columnName: "Price", header: "Price"),
+                    grid.Column(columnName: "Likes", header: "Likes"),
+                    grid.Column(columnName: null, header: null, format: (item) =>
+                        new HtmlString(
+                            Html.ActionLink("Like", "Like", new { id = item.AlbumID }, new { @class = "btn btn-primary" }).ToString() +
+                            Html.ActionLink("+", "AddToPlaylist", "Playlists", new { id = item.AlbumID }, new { @class = "btn btn-danger" }).ToString() +
+                            Html.ActionLink("Edit", "Edit", new { id = item.AlbumID }, new { @class = "btn btn-warning" }).ToString() +
+                            Html.ActionLink("Details", "Details", new { id = item.AlbumID }, new { @class = "btn btn-info" }).ToString() +
+                            Html.ActionLink("Delete", "Delete", new { id = item.AlbumID }, new { @class = "btn btn-danger" }).ToString()
+                    )
+                   
+)
+)
+)
+
+</div>

@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlaylistsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -147,11 +148,48 @@
     <Compile Include="Migrations\201604121834523_GenreModelChange1.Designer.cs">
       <DependentUpon>201604121834523_GenreModelChange1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604172004273_LikesButton.cs" />
+    <Compile Include="Migrations\201604172004273_LikesButton.Designer.cs">
+      <DependentUpon>201604172004273_LikesButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604191750412_ArtistBio.cs" />
+    <Compile Include="Migrations\201604191750412_ArtistBio.Designer.cs">
+      <DependentUpon>201604191750412_ArtistBio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604201913085_Playlist.cs" />
+    <Compile Include="Migrations\201604201913085_Playlist.Designer.cs">
+      <DependentUpon>201604201913085_Playlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604202035414_Playlist2.cs" />
+    <Compile Include="Migrations\201604202035414_Playlist2.Designer.cs">
+      <DependentUpon>201604202035414_Playlist2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604202050074_Playlist4.cs" />
+    <Compile Include="Migrations\201604202050074_Playlist4.Designer.cs">
+      <DependentUpon>201604202050074_Playlist4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604202056204_Playlist41.cs" />
+    <Compile Include="Migrations\201604202056204_Playlist41.Designer.cs">
+      <DependentUpon>201604202056204_Playlist41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604212118298_Playlist5.cs" />
+    <Compile Include="Migrations\201604212118298_Playlist5.Designer.cs">
+      <DependentUpon>201604212118298_Playlist5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604271958591_Playlists3.cs" />
+    <Compile Include="Migrations\201604271958591_Playlists3.Designer.cs">
+      <DependentUpon>201604271958591_Playlists3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604272242214_Playlists6.cs" />
+    <Compile Include="Migrations\201604272242214_Playlists6.Designer.cs">
+      <DependentUpon>201604272242214_Playlists6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MusicContext.cs" />
+    <Compile Include="Models\Playlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +249,13 @@
     <Content Include="Views\Artists\Edit.cshtml" />
     <Content Include="Views\Artists\Index.cshtml" />
     <Content Include="Views\Artists\ShowSomeArtists.cshtml" />
+    <Content Include="Views\Albums\Likes.cshtml" />
+    <Content Include="Views\Playlists\Create.cshtml" />
+    <Content Include="Views\Playlists\Delete.cshtml" />
+    <Content Include="Views\Playlists\Details.cshtml" />
+    <Content Include="Views\Playlists\Edit.cshtml" />
+    <Content Include="Views\Playlists\Index.cshtml" />
+    <Content Include="Views\Playlists\AddToPlaylist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -232,6 +277,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604121834523_GenreModelChange1.resx">
       <DependentUpon>201604121834523_GenreModelChange1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604172004273_LikesButton.resx">
+      <DependentUpon>201604172004273_LikesButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604191750412_ArtistBio.resx">
+      <DependentUpon>201604191750412_ArtistBio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604201913085_Playlist.resx">
+      <DependentUpon>201604201913085_Playlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604202035414_Playlist2.resx">
+      <DependentUpon>201604202035414_Playlist2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604202050074_Playlist4.resx">
+      <DependentUpon>201604202050074_Playlist4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604202056204_Playlist41.resx">
+      <DependentUpon>201604202056204_Playlist41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604212118298_Playlist5.resx">
+      <DependentUpon>201604212118298_Playlist5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271958591_Playlists3.resx">
+      <DependentUpon>201604271958591_Playlists3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604272242214_Playlists6.resx">
+      <DependentUpon>201604272242214_Playlists6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ShowSomeArtists";
 }
-<h2>ShowSomeArtists</h2>
+<h2>Artists</h2>
 <p>
     @Html.ActionLink("Back to Artists", "Index")
     
@@ -13,10 +13,10 @@
             @Html.DisplayNameFor(model => model.Artist.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Genre.Name)
+            @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Genre.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -30,10 +30,10 @@
                 @Html.DisplayFor(modelItem => item.Artist.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Genre.Name)
+                <a href="/Albums/Details/@item.AlbumID">@item.Title</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                <a href="/Genres/ShowSomeGenres/@item.Genre.GenreID">@item.Genre.Name</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)

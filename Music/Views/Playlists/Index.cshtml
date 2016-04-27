@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Music.Models.Playlist>
+
+@{
+    ViewBag.Title = "Playlists";
+}
+
+<p>
+        @Html.ActionLink("Create New", "Create")
+        
+</p>
+<table class="table">
+  <tr>
+      <th>
+          @Html.DisplayNameFor(model => model.Name)
+      </th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+      <tr>
+          <td>
+              @Html.ActionLink(item.Name, "Details", new { id = item.PlaylistID })
+          </td>
+          <td>
+          </td>
+      </tr>
+  }
+
+</table>
+

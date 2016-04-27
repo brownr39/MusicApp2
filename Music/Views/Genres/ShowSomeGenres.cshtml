@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Music.Models.Album>
 @{
-    ViewBag.Title = "Albums";
+    ViewBag.Title = "Genres";
 }
-<h2>ShowSomeGenres</h2>
+<h2>Genres</h2>
 <p>
     @Html.ActionLink("Back to Genres", "Index")
 </p>
@@ -26,18 +26,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Artist.Name)
-
+                <a href="/Artists/ShowSomeArtists/@item.ArtistID">@item.Artist.Name</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Genre.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                <a href="/Albums/Details/@item.AlbumID">@item.Title</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
-
             </td>
         </tr>
 

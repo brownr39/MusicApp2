@@ -12,6 +12,7 @@ namespace Music.Models
         public int AlbumID { get; set; }
         [Required(ErrorMessage ="Album title is required")]
         public string Title { get; set; }
+        public int Likes { get; set; }
         [Display(Name ="Genre")]
         public int GenreID { get; set; }
         public Genre Genre { get; set; }
@@ -21,6 +22,8 @@ namespace Music.Models
         [Display(Name = "Artist")]
         public int ArtistID { get; set; }
         public Artist Artist { get; set; }
+        public List<Playlist> Playlists { get; set; }
 
+        
     }
 }

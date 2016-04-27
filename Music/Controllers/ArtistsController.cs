@@ -43,7 +43,7 @@ namespace Music.Controllers
 
         public ActionResult ShowSomeArtists(int id)
         {
-            var albums = db.Albums
+            var albums = db.Album
                 .Include(a => a.Artist)
                 .Include(a => a.Genre)
                 .Where(a => a.ArtistID == id);
@@ -55,7 +55,7 @@ namespace Music.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ArtistID,Name")] Artist artist)
+        public ActionResult Create([Bind(Include = "ArtistID,Name,Bio")] Artist artist)
         {
             if (ModelState.IsValid)
             {

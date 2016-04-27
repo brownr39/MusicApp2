@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Music.Models;
 
+
 namespace Music.Controllers
 {
     public class AlbumsController : Controller
@@ -15,15 +16,30 @@ namespace Music.Controllers
         private MusicContext db = new MusicContext();
 
         // GET: Albums
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre);
+            var albums = db.Album.Include(a => a.Artist).Include(a => a.Genre);
+            //var genres = db.Genres.Include(a => a.Name).Include(a => a.GenreID);
+            //var artists = db.Artists.Include(a => a.Name).Include(a => a.ArtistID);
+
+            //foreach (string word in searchString)
+            //{
+
+            //}
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                albums = albums.Where(a => a.Title.Contains(searchString) || a.Genre.Name.Contains(searchString) || a.Artist.Name.Contains(searchString));
+            }
+
+            
+
             return View(albums.ToList());
         }
 
         public ActionResult ShowSomeAlbums(int id)
         {
-            var albums = db.Albums
+            var albums = db.Album
                 .Include(a => a.Artist)
                 .Include(a => a.Genre)
                 .Where(a => a.GenreID == id);
@@ -38,7 +54,7 @@ namespace Music.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             try {
-                Album album = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.AlbumID == id).Single();
+                Album album = db.Album.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.AlbumID == id).Single();
             
                 if (album == null)
             {
@@ -67,17 +83,32 @@ namespace Music.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AlbumID,Title,GenreID,Price,ArtistID")] Album album)
         {
+
             if (ModelState.IsValid)
             {
-                db.Albums.Add(album);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //db.Albums.Add(album);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
+
+                if (db.Album.Any(a => a.Title.Equals(album.Title)))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    db.Album.Add(album);
+
+                    db.SaveChanges();
+                }
             }
+
+
 
             ViewBag.ArtistID = new SelectList(db.Artists, "ArtistID", "Name", album.ArtistID);
             ViewBag.GenreID = new SelectList(db.Genres, "GenreID", "Name", album.GenreID);
             return View(album);
         }
+
 
         // GET: Albums/Edit/5
         public ActionResult Edit(int? id)
@@ -86,7 +117,7 @@ namespace Music.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+            Album album = db.Album.Find(id);
             if (album == null)
             {
                 return HttpNotFound();
@@ -121,7 +152,7 @@ namespace Music.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+            Album album = db.Album.Find(id);
             if (album == null)
             {
                 return HttpNotFound();
@@ -134,8 +165,8 @@ namespace Music.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Album album = db.Albums.Find(id);
-            db.Albums.Remove(album);
+            Album album = db.Album.Find(id);
+            db.Album.Remove(album);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -148,5 +179,23 @@ namespace Music.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
+        public ActionResult Like(int id)
+        {
+            Album click = db.Album.Find(id);
+
+            db.Entry(click).State = EntityState.Modified;
+            click.Likes += 1;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+            
+        }
+
+        
+
+       
+        
     }
 }

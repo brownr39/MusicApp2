@@ -46,7 +46,7 @@ namespace Music.Controllers
 
         public ActionResult ShowSomeGenres(int id)
         {
-            var albums = db.Albums
+            var albums = db.Album
                 .Include(a => a.Artist)
                 .Include(a => a.Genre)
                 .Where(a => a.GenreID == id);

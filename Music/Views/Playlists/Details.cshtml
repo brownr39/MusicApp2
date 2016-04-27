@@ -1,0 +1,21 @@
+﻿@model Music.Models.Playlist
+@{
+    ViewBag.Title = "Playlist";
+}
+<h2>Albums in Playlist</h2>
+<p>
+    @Html.ActionLink("Back to Playlists", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+        @Html.DisplayNameFor(model => model.Albums)    
+        </th>
+        <td>
+        @Html.DisplayFor(model => model.Albums)
+        </td>
+    </tr>
+
+    
+
+</table>

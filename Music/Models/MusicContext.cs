@@ -19,10 +19,12 @@ namespace Music.Models
         {
         }
 
-        public System.Data.Entity.DbSet<Music.Models.Album> Albums { get; set; }
+        public System.Data.Entity.DbSet<Music.Models.Album> Album { get; set; }
 
         public System.Data.Entity.DbSet<Music.Models.Artist> Artists { get; set; }
 
         public System.Data.Entity.DbSet<Music.Models.Genre> Genres { get; set; }
+
+        public System.Data.Entity.DbSet<Music.Models.Playlist> Playlists { get; set; }
     }
 }
